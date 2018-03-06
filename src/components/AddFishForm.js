@@ -1,12 +1,12 @@
 import React from 'react';
 
 class AddFishForm extends React.Component {
-    //go on min 13:00 of video n. 13
     nameRef = React.createRef();
     priceRef = React.createRef();
     statusRef = React.createRef();
     descRef = React.createRef();
     imageRef = React.createRef();
+    
     createFish = event => {
         //1. stop the form from submitting
         event.preventDefault();
@@ -17,7 +17,9 @@ class AddFishForm extends React.Component {
             desc: this.descRef.value.value,
             image: this.imageRef.value.value
         }
-        console.log(fish);
+        this.props.addFish(fish);
+        //refresh the form
+        event.currentTarget.reset();
     }
     render() {
         return (
