@@ -1,16 +1,3 @@
 {
-    "window.zoomLevel": -1,
-    "editor.fontFamily": "'Courier New",
-    "editor.fontSize": 16,
-    "workbench.colorTheme": "One Monokai",
-    "emmet.syntaxProfiles": { "javascript": "html" },
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-      },
-    "editor.snippetSuggestions": "top",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile",
-    "files.associations": {
-        "*.js": "javascript"
-    }
+
 }

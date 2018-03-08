@@ -7,15 +7,12 @@ import Fish from './Fish';
 
 class App extends React.Component {
     state = {
-        fishes: {
-
-        },
+        fishes: {},
         order: {}
     }
     addFish = fish => {
         //1. take a copy of the existing state
         const fishes = { ...this.state.fishes };
-        console.log(fishes);
         //2. add our new fish to that fishes variables
         fishes[`fish${Date.now()}`] = fish;
         //3. set the new fishes object to the new state
@@ -27,6 +24,14 @@ class App extends React.Component {
         this.setState({
             fishes: sampleFishes
         });
+    };
+    addToOrder = (key) => {
+        // 1. take a copy of state
+        const order = { ...this.state.order };
+        // 2. either add to the order, or update the number in our order
+        order[key] = order[key] + 1 || 1;
+        // 3. call setState to update our state object
+        this.setState({ order: order }); //in ES6 it is possible to write only this.setState({order});
     }
     render() {
         return (
@@ -34,13 +39,20 @@ class App extends React.Component {
                 <div className="menu">
                     <Header tagline="FRESH SEAFOOD MARKET" />
                     <ul className="fishes">
-                        {Object.keys(this.state.fishes).map(key => <Fish key={key} details={this.state.fishes[key]}/>)}
+                        {Object.keys(this.state.fishes).map(key =>(
+                        <Fish
+                        key={key}
+                        index={key}
+                        details={this.state.fishes[key]}
+                        addToOrder={this.addToOrder}
+                        />
+                        ))}
                     </ul>
                 </div>
-                <Order />
-                <Inventory 
-                    addFish={this.addFish} 
-                    loadSampleFishes={this.loadSampleFishes} 
+                <Order fishes={this.state.fishes} order={this.state.order} />
+                <Inventory
+                    addFish={this.addFish}
+                    loadSampleFishes={this.loadSampleFishes}
                 />
             </div>
         )
